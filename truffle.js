@@ -1,9 +1,8 @@
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-const mnemonicPhrase = "";
+require("dotenv").config();
+const mnemonicPhrase = process.env.MNEMONIC;
 
 module.exports = {
-  // See <http://truffleframework.com/docs/advanced/configuration>
-  // for more about customizing your Truffle configuration!
   networks: {
     development: {
       host: "localhost",
@@ -16,15 +15,15 @@ module.exports = {
           mnemonic: {
             phrase: mnemonicPhrase
           },
-          providerOrUrl: "https://testnetwork.esatya.io"
+          providerOrUrl: process.env.RUMSAN_TEST_URL
         });
       },
       network_id: "2020"
-    },
-    compilers: {
-      solc: {
-        version: "0.6.4" // Fetch exact version from solc-bin (default: truffle's version)
-      }
+    }
+  },
+  compilers: {
+    solc: {
+      version: "0.6.4" // Fetch exact version from solc-bin (default: truffle's version)
     }
   }
 };
