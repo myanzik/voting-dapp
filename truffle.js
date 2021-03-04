@@ -1,6 +1,5 @@
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-const mnemonicPhrase =
-  "raw slide path garment salon toward motion cradle gesture nose prepare table";
+const mnemonicPhrase = "";
 
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
