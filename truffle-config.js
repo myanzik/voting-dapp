@@ -18,7 +18,7 @@ module.exports = {
           providerOrUrl: process.env.RUMSAN_TEST_URL
         });
       },
-      network_id: "2020"
+      network_id: process.env.RUMSAN_TEST_ID
     }
   },
   compilers: {
