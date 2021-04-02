@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "lite-server",
     "compile": "truffle compile",
+    "migrate": "truffle migrate --reset",
     "deploy-rumsan": "truffle deploy --network rumsanTest --reset"
   },
   "author": "",
