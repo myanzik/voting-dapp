@@ -30,6 +30,17 @@ module.exports = {
         });
       },
       network_id: 3
+    },
+    binance: {
+      provider: function() {
+        return new HDWalletProvider({
+          mnemonic: {
+            phrase: mnemonicPhrase
+          },
+          providerOrUrl: process.env.BINANCE_TEST_URL
+        });
+      },
+      network_id: 97
     }
   },
   compilers: {
