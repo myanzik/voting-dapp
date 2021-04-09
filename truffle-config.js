@@ -10,7 +10,7 @@ module.exports = {
       network_id: "*" // Match any network id
     },
     rumsanTest: {
-      provider: function () {
+      provider: function() {
         return new HDWalletProvider({
           mnemonic: {
             phrase: mnemonicPhrase
@@ -19,6 +19,17 @@ module.exports = {
         });
       },
       network_id: process.env.RUMSAN_TEST_ID
+    },
+    ropsten: {
+      provider: function() {
+        return new HDWalletProvider({
+          mnemonic: {
+            phrase: mnemonicPhrase
+          },
+          providerOrUrl: process.env.ROPSTEN_URL
+        });
+      },
+      network_id: 3
     }
   },
   compilers: {
