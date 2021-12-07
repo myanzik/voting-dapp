@@ -11,5 +11,5 @@ How to rum locally - (ganache ):
 How to run in rumsan-network:
 
 1. yarn compile
-2. yarn deploy-rumsan
+2. yarn deploy-binance
 3. yarn dev
