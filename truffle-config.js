@@ -1,8 +1,14 @@
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 require("dotenv").config();
 const mnemonicPhrase = process.env.MNEMONIC;
+const BSCSCANAPIKEY = process.env.BSCSCANAPIKEY; 
+
 
 module.exports = {
+  plugins: [ 'truffle-plugin-verify'],
+  api_keys: {
+		bscscan: BSCSCANAPIKEY
+	},
   networks: {
     development: {
       host: "localhost",
