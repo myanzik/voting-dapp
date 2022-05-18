@@ -8,7 +8,7 @@ App = {
   },
 
   // Instance Web3
-  initWeb3: function () {
+  initWeb3: async function () {
     // Is there an injected web3 instance?
     if (typeof web3 !== "undefined") {
       App.web3Provider = web3.currentProvider;
@@ -20,7 +20,17 @@ App = {
       App.web3Provider = new Web3.providers.HttpProvider("http://localhost:7545");
     }
     web3 = new Web3(App.web3Provider);
+    const account = await App.getAccount();
+    if(account){
+      $("#btn-connect").hide()
+      $("#connected-account").show();
+      $("#connected-account").text(`Connected Account: ${account}`)
+    }
     return App.initContract();
+  },
+
+  connectWallet: async function(){
+    await window.ethereum.enable();
   },
 
   // Instance contract
@@ -36,6 +46,17 @@ App = {
   },
 
   bindEvents: function () {
+   $(document).on("click", "#btn-connect", async function (e) {
+      let $this = $(this);
+      App.btnLoading($this,'Connecting...');
+      try {
+        await App.connectWallet(e);
+        await App.initWeb3();
+      } catch (e) {
+        App.btnReset($this);
+      }
+      App.btnReset($this);
+    });
     $(document).on("click", ".btn-value", async function (e) {
       let $this = $(this);
       App.btnLoading($this);
@@ -139,10 +160,10 @@ App = {
     }
   },
 
-  btnLoading: function (elem) {
+  btnLoading: function (elem,message) {
     $(elem).attr("data-original-text", $(elem).html());
     $(elem).prop("disabled", true);
-    $(elem).html('<i class="spinner-border spinner-border-sm"></i> Processing...');
+    $(elem).html(`<i class="spinner-border spinner-border-sm"></i> ${message || 'Processing...'}`);
   },
 
   btnReset: function (elem) {
